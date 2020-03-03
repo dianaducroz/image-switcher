@@ -1,34 +1,23 @@
-$("body").on("click", "#man", function (e) {
+$("body").on("click", ".my-button", function (e) {
 	e.preventDefault();
 
-	const url = $("#man").data("image");
-	// this means this will always be the image, that's never going to change,
-	// although -beware- you can change the actual image that is the source
-	// url (like 'x' or 'y') is the variable here. when you put url in the code,
-	// it's like saying the variable here will always be 'man.data image...'
+	console.log(e);
 
-	console.log(url);
-	// this somehow lets you test that the function is firing and that you are correctly
-	// capturing the 'url' they way you want it.  you should see 'img/man.jpg' in the
-	// console log
+	const this_button = e.target;
 
-	$("img").attr("src", url);
-	// on the image tag, you ware targeting the src attribute.  by giving it the
-	// second parameterthe 'url' variable, you are telling it to actually use the 'url'
-	// the attribute you want to target always comes first, the value you want to use always comes 2nd
-	//  attribute is a -method- i think
-});
+	// replaced ""#man" with "".my-button" means that you can set a const for the button
+	// .my-button is the class attribute (?) for the button tag in HTML.
+	// so every time somebody clicks on the target, checks to see whether the class is my-button
+	// and if it is, then it fires the function, but if you hvae more than one element on the page
+	// with the my-button class, then it doesn't know which to show.  this is where 'this-button'
+	// comes in, it allows you to enter the id for that specific button/target.
 
-$("body").on("click", "#baby", function (e) {
-	e.preventDefault();
+	const url = $(this_button).data("image");
 
-	const url = $("#baby").data("image");
+	// replace #man with this_button but w NO QUOTES, because it is or is not a variable.
 
 	console.log(url);
 
 	$("img").attr("src", url);
 
 });
-// so all of the above is the 'long' way, not the way you want to do it!!! it's not DRY.
-// bc if you need to make a change later, you'll have to go back and change the little code in every
-// single cloned/copied part.
